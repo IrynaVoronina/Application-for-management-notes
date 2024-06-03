@@ -1,0 +1,82 @@
+$font-stack: Helvetica, sans-serif;
+$priority-high: #fd9f9f;
+$priority-medium: #fffdad;
+$priority-low: #a9fabf;
+$status-completed: #c9c9c9;
+$note-size: 260px;
+$scale-factor: 1.1; // Фактор масштабування
+
+@mixin bordered($color) {
+  border: 5px solid $color;
+}
+
+.note {
+  background: #ffefe4;
+  width: $note-size;
+  height: $note-size;
+  margin: 15px;
+  padding: 15px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  border-radius: 25px;
+  transform-origin: center;
+
+  &:hover {
+    transform: scale($scale-factor);
+
+    &.priority-high {
+      @include bordered($priority-high);
+    }
+
+    &.priority-medium {
+      @include bordered($priority-medium);
+    }
+
+    &.priority-low {
+      @include bordered($priority-low);
+    }
+  }
+
+  .title {
+    font-family: $font-stack;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 15px;
+  }
+
+  .last-edited {
+    position: absolute;
+    bottom: 5px;
+    right: 8px;
+    font-size: 12px;
+  }
+
+  &.status-completed {
+    border: none;
+    background-color: $status-completed;
+  }
+
+  .btn {
+    margin-top: 5px;
+  }
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  height: 150px;
+  background-color: #fd8728;
+  color: #000000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+
+}
